@@ -58,7 +58,7 @@ public abstract class AbstractObservableCollection<T, COL extends Collection<T>,
   public Registration addElementAddedListener(final CollectionElementAddedListener<T, COL, SUB> listener) {
     elementAddedListeners.addListener(listener);
 
-    return (() -> elementAddedListeners.removeListener(listener));
+    return (() -> removedElementAddedListener(listener));
   }
 
   public void removedElementAddedListener(final CollectionElementAddedListener<T, COL, SUB> listener) {
@@ -68,7 +68,7 @@ public abstract class AbstractObservableCollection<T, COL extends Collection<T>,
   public Registration addElementRemovedListener(final CollectionElementRemovedListener<T, COL, SUB> listener) {
     elementRemovedListeners.addListener(listener);
 
-    return (() -> elementRemovedListeners.removeListener(listener));
+    return (() -> removedElementRemovedListener(listener));
   }
 
   public void removedElementRemovedListener(final CollectionElementRemovedListener<T, COL, SUB> listener) {

@@ -59,7 +59,7 @@ public abstract class AbstractObservableList<T, LST extends List<T>, SUB extends
   public Registration addElementAddedListener(final ListElementAddedListener<T, LST, SUB> listener) {
     listElementAddedListeners.addListener(listener);
 
-    return (() -> listElementAddedListeners.removeListener(listener));
+    return (() -> removedElementAddedListener(listener));
   }
 
   public void removedElementAddedListener(final ListElementAddedListener<T, LST, SUB> listener) {
@@ -69,7 +69,7 @@ public abstract class AbstractObservableList<T, LST extends List<T>, SUB extends
   public Registration addElementRemovedListener(final ListElementRemovedListener<T, LST, SUB> listener) {
     listElementRemovedListeners.addListener(listener);
 
-    return (() -> listElementRemovedListeners.removeListener(listener));
+    return (() -> removedElementRemovedListener(listener));
   }
 
   public void removedElementRemovedListener(final ListElementRemovedListener<T, LST, SUB> listener) {
@@ -79,10 +79,10 @@ public abstract class AbstractObservableList<T, LST extends List<T>, SUB extends
   public Registration addElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
     listElementChangedListeners.addListener(listener);
 
-    return (() -> listElementChangedListeners.removeListener(listener));
+    return (() -> removeElementChangedListener(listener));
   }
 
-  public void changedElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
+  public void removeElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
     listElementChangedListeners.removeListener(listener);
   }
 
