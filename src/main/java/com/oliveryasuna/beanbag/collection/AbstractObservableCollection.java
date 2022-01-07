@@ -24,6 +24,7 @@ import com.oliveryasuna.beanbag.collection.event.CollectionElementRemovedEvent;
 import com.oliveryasuna.beanbag.collection.listener.CollectionElementAddedListener;
 import com.oliveryasuna.beanbag.collection.listener.CollectionElementRemovedListener;
 import com.oliveryasuna.beanbag.helper.IteratorDecorator;
+import com.oliveryasuna.commons.language.pattern.registry.Registration;
 import org.apache.commons.lang3.event.EventListenerSupport;
 
 import java.util.ArrayList;
@@ -54,16 +55,20 @@ public abstract class AbstractObservableCollection<T, COL extends Collection<T>,
   // Listener registration methods
   //--------------------------------------------------
 
-  public void addElementAddedListener(final CollectionElementAddedListener<T, COL, SUB> listener) {
+  public Registration addElementAddedListener(final CollectionElementAddedListener<T, COL, SUB> listener) {
     elementAddedListeners.addListener(listener);
+
+    return (() -> elementAddedListeners.removeListener(listener));
   }
 
   public void removedElementAddedListener(final CollectionElementAddedListener<T, COL, SUB> listener) {
     elementAddedListeners.removeListener(listener);
   }
 
-  public void addElementRemovedListener(final CollectionElementRemovedListener<T, COL, SUB> listener) {
+  public Registration addElementRemovedListener(final CollectionElementRemovedListener<T, COL, SUB> listener) {
     elementRemovedListeners.addListener(listener);
+
+    return (() -> elementRemovedListeners.removeListener(listener));
   }
 
   public void removedElementRemovedListener(final CollectionElementRemovedListener<T, COL, SUB> listener) {

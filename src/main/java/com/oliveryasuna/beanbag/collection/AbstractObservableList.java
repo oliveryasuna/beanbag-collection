@@ -25,6 +25,7 @@ import com.oliveryasuna.beanbag.collection.listener.ListElementAddedListener;
 import com.oliveryasuna.beanbag.collection.listener.ListElementChangedListener;
 import com.oliveryasuna.beanbag.collection.listener.ListElementRemovedListener;
 import com.oliveryasuna.beanbag.helper.ListIteratorDecorator;
+import com.oliveryasuna.commons.language.pattern.registry.Registration;
 import org.apache.commons.lang3.event.EventListenerSupport;
 
 import java.util.*;
@@ -55,24 +56,30 @@ public abstract class AbstractObservableList<T, LST extends List<T>, SUB extends
   // Listener registration methods
   //--------------------------------------------------
 
-  public void addElementAddedListener(final ListElementAddedListener<T, LST, SUB> listener) {
+  public Registration addElementAddedListener(final ListElementAddedListener<T, LST, SUB> listener) {
     listElementAddedListeners.addListener(listener);
+
+    return (() -> listElementAddedListeners.removeListener(listener));
   }
 
   public void removedElementAddedListener(final ListElementAddedListener<T, LST, SUB> listener) {
     listElementAddedListeners.removeListener(listener);
   }
 
-  public void addElementRemovedListener(final ListElementRemovedListener<T, LST, SUB> listener) {
+  public Registration addElementRemovedListener(final ListElementRemovedListener<T, LST, SUB> listener) {
     listElementRemovedListeners.addListener(listener);
+
+    return (() -> listElementRemovedListeners.removeListener(listener));
   }
 
   public void removedElementRemovedListener(final ListElementRemovedListener<T, LST, SUB> listener) {
     listElementRemovedListeners.removeListener(listener);
   }
 
-  public void addElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
+  public Registration addElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
     listElementChangedListeners.addListener(listener);
+
+    return (() -> listElementChangedListeners.removeListener(listener));
   }
 
   public void changedElementChangedListener(final ListElementChangedListener<T, LST, SUB> listener) {
