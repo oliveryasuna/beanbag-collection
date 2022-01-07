@@ -25,7 +25,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Collection;
 
-public class CollectionElementAddedEvent<T, COL extends Collection<T>, SRC extends AbstractObservableCollection<T, COL, SRC>> extends CollectionEvent<T, COL, SRC> {
+public class CollectionElementAddedEvent<T, COL extends Collection<T>, SRC extends AbstractObservableCollection<T, COL, SRC>>
+    extends CollectionEvent<T, COL, SRC> {
 
   // Constructors
   //--------------------------------------------------
