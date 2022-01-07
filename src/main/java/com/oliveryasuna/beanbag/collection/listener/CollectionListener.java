@@ -19,10 +19,10 @@
 package com.oliveryasuna.beanbag.collection.listener;
 
 import com.oliveryasuna.beanbag.collection.AbstractObservableCollection;
+import com.oliveryasuna.beanbag.listener.BeanListener;
 
 import java.util.Collection;
-import java.util.EventListener;
 
-public interface CollectionListener<T, COL extends Collection<T>, SRC extends AbstractObservableCollection<T, COL, SRC>> extends EventListener {
+public interface CollectionListener<T, COL extends Collection<T>, SRC extends AbstractObservableCollection<T, COL, SRC>> extends BeanListener<COL, SRC> {
 
 }
